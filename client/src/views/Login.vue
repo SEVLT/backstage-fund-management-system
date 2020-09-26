@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import jwt_code from 'jwt-decode'
+
 export default {
 	name: 'login',
 	components: {},
@@ -91,9 +93,13 @@ export default {
 						const { token } = res.data
 						// 存储到本地 localstorage
 						localStorage.setItem('eleToken', token)
-
-						this.$router.push('/index')
-
+						// 解析token
+						const decoded = jwt_code(token)
+						// 测试是否正常解析
+						// console.log(decoded);
+						// 将解析的token存储到Vue x中
+						this.$store.dispatch('setAuthenticated', !this.isEmpty(decoded))
+						this.$store.dispatch('setUser', decoded)
 						// 注册成功
 						this.$message({
 							message: '登陆成功',
@@ -104,6 +110,15 @@ export default {
 					})
 				}
 			})
+		},
+		// 判断 token 是否存有内容，是否为空
+		isEmpty(value) {
+			return (
+				value === undefined ||
+				value === null ||
+				(typeof value === 'object' && Object.keys(value).length === 0) ||
+				(typeof value === 'string' && value.trim().length === 0)
+			)
 		},
 	},
 }
