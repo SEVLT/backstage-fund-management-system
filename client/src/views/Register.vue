@@ -179,7 +179,7 @@ export default {
 	font-family: 'Microsoft YaHei';
 	font-weight: bold;
 	font-size: 26px;
-	color: #fff;
+	color: #9C9C9C;
 }
 
 .registerForm {

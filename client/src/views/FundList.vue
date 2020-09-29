@@ -47,53 +47,51 @@
 				max-height="450px"
 				border
 			>
-				<el-table-column label="序号" type="index" width="70" align="center">
+				<el-table-column label="序号" type="index" width="80" align="center">
 				</el-table-column>
 
-				<el-table-column prop="date" label="创建时间" width="250" align="center">
+				<el-table-column prop="date" label="创建时间" width="320" align="center">
 					<template slot-scope="scope">
 						<i class="el-icon-time"></i>
 						<span style="margin-left: 10px">{{ scope.row.date }}</span>
 					</template>
 				</el-table-column>
 
-				<el-table-column prop="type" label="收支类型" width="150" align="center">
+				<el-table-column prop="type" label="收支类型" width="170" align="center">
 				</el-table-column>
 
-				<el-table-column prop="describe" label="收支描述" width="180" align="center">
-				</el-table-column>
-
-				<el-table-column prop="income" label="收入" width="150" align="center">
+				<el-table-column prop="income" label="收入" width="170" align="center">
 					<template slot-scope="scope">
 						<span style="color: #00d053">{{ scope.row.income }}</span>
 					</template>
 				</el-table-column>
 
-				<el-table-column prop="expend" label="支出" width="150" align="center">
+				<el-table-column prop="expend" label="支出" width="170" align="center">
 					<template slot-scope="scope">
 						<span style="color: #f56767">{{ scope.row.expend }}</span>
 					</template>
 				</el-table-column>
 
-				<el-table-column prop="cash" label="账户现金" width="150" align="center">
+				<el-table-column prop="cash" label="账户现金" width="170" align="center">
 					<template slot-scope="scope">
 						<span style="color: #4db3ff">{{ scope.row.cash }}</span>
 					</template>
 				</el-table-column>
 
-				<el-table-column prop="remark" label="备注" width="220" align="center">
+				<el-table-column prop="remark" label="备注" width="250" align="center">
 				</el-table-column>
 
 				<el-table-column
 					prop="operation"
 					label="操作"
 					align="center"
-					width="170"
+					width="250"
 					v-if="identity"
 				>
 					<template slot-scope="scope">
 						<el-button
 							size="mini"
+							type="warning"
 							icon="edit"
 							@click="handleEdit(scope.$index, scope.row)"
 							>编辑
@@ -129,7 +127,7 @@
 			</el-row>
 		</div>
 
-		<DiaLog :dialog="dialog" :formData="formData" @update="getProfile"></DiaLog>
+		<DiaLog :diaLog="diaLog" :formData="formData" @update="getProfile"></DiaLog>
 	</div>
 </template>
 
@@ -157,14 +155,13 @@ export default {
 			tableData: [],
 			// 存放所有当时数据
 			allTabData: [],
-			dialog: {
+			diaLog: {
 				show: false,
 				title: '',
 				option: 'edit',
 			},
 			formData: {
 				type: '',
-				describe: '',
 				income: '',
 				expend: '',
 				cash: '',
@@ -211,15 +208,14 @@ export default {
 		},
 		handleEdit(index, row) {
 			// console.log(index, row);
-			// console.log(this.dialog);
-			this.dialog = {
+			// console.log(this.diaLog);
+			this.diaLog = {
 				show: true,
 				title: '编辑信息',
 				option: 'edit',
 			}
 			this.formData = {
 				type: row.type,
-				describe: row.describe,
 				income: row.income,
 				expend: row.expend,
 				cash: row.cash,
@@ -237,8 +233,8 @@ export default {
 						message: '删除成功',
 						type: 'success',
 					})
-					// 隐藏 dialog
-					// this.dialog.show = false
+					// 隐藏 diaLog
+					// this.diaLog.show = false
 					// 删除后更新
 					this.getProfile()
 				})
@@ -247,18 +243,17 @@ export default {
 						message: '删除失败',
 						type: 'error',
 					})
-					// this.dialog.show = false
+					// this.diaLog.show = false
 				})
 		},
 		handleAdd() {
-			this.dialog = {
+			this.diaLog = {
 				show: true,
 				title: '添加信息',
 				option: 'add',
 			}
 			this.formData = {
 				type: '',
-				describe: '',
 				income: '',
 				expend: '',
 				cash: '',

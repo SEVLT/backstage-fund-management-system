@@ -2,8 +2,8 @@
 	<header class="head-nav">
 		<el-row>
 			<el-col :span="6" class="logo-container">
-				<img src="../assets/logo.png" class="logo" />
-				<span class="title">后台资金管理系统</span>
+				<img @click="toHome" src="../assets/logo.png" class="logo" />
+				<span class="title"> 后台资金管理系统</span>
 			</el-col>
 			<el-col :span="6" class="user">
 				<div class="userinfo">
@@ -50,6 +50,10 @@ export default {
 					break
 			}
 		},
+		toHome() {
+			// 点击 icon 跳转到首页
+			this.$router.push('/index')
+		},
 		showInfoList() {
 			// console.log("个人信息")
 			this.$router.push('/infoshow')
@@ -83,6 +87,8 @@ export default {
 }
 
 .logo {
+	padding: 5px;
+	padding-left: 20px;
 	height: 50px;
 	width: 50px;
 	margin-right: 5px;

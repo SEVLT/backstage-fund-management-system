@@ -1,8 +1,8 @@
 <template>
 	<div class="home">
 		<div class="container">
-			<h1 class="title">季夏二十一</h1>
-			<p class="lead">朝暮与年岁并往，愿与你一同行至天光</p>
+			<h1 class="title">欢迎登陆</h1>
+			<p class="lead">后台资金管理系统</p>
 		</div>
 	</div>
 </template>
@@ -26,17 +26,19 @@ export default {
 	height: 100%;
 	box-sizing: border-box;
 	padding-top: 100px;
-	background-color: rgba(0, 0, 0, 0.7);
+	background-color: rgba(0, 0, 0, 0.3);
 	text-align: center;
 	color: #ffffff;
 }
 
 .title {
-	font-size: 30px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	font-size: 40px;
 }
 
 .lead {
 	margin-top: 50px;
-	font-size: 22px;
+	font-size: 30px;
 }
 </style>
